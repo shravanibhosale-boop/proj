@@ -1,21 +1,47 @@
+# -------------------------------
+# 🏷️ Workflow Name
+# -------------------------------
 name: Run Python Script
+# This is the name that will appear in GitHub's "Actions" tab.
 
+# -------------------------------
+# ⚡ When to Run the Workflow
+# -------------------------------
 on:
   push:
     branches:
       - main
+# This tells GitHub to run the workflow every time you push
+# changes to the 'main' branch.
 
+# -------------------------------
+# 🧩 Define the Job(s)
+# -------------------------------
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build:                     # The name of the job
+    runs-on: ubuntu-latest   # The virtual machine (OS) to run on
+
     steps:
+      # -------------------------------
+      # Step 1: Checkout Code
+      # -------------------------------
       - name: Checkout code
         uses: actions/checkout@v4
+        # This action downloads your repository’s code into the runner
+        # so other steps can access it.
 
+      # -------------------------------
+      # Step 2: Set Up Python
+      # -------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+        # This installs Python 3.10 on the runner environment.
 
+      # -------------------------------
+      # Step 3: Run Your Script
+      # -------------------------------
       - name: Run script
         run: python app.py
+        # This runs your Python script file.
